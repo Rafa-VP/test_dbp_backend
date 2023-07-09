@@ -4,8 +4,11 @@ import { ValidationPipe } from '@nestjs/common'
 
 async function main() {
   const app = await NestFactory.create(AppModule)
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+  })
   app.useGlobalPipes(new ValidationPipe())
-  app.enableCors({ origin: '*', methods: ['POST', 'PUT', 'DELETE', 'GET'] })
   await app.listen(3000)
 }
 main()
