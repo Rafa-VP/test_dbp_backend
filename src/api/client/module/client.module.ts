@@ -6,10 +6,10 @@ import { ClientService } from '../service/client.service'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Client', schema: ClientSchema }]),
+    MongooseModule.forFeature([{ name: 'Client', schema: ClientSchema }])
   ],
   controllers: [ClientController],
   providers: [ClientService],
-  exports: [ClientService],
+  exports: [ClientService]
 })
 export class ClientModule {}

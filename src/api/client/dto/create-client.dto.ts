@@ -6,7 +6,7 @@ import {
   MinLength,
   Max,
   Min,
-  IsNumberString,
+  IsNumberString
 } from 'class-validator'
 export class CreateClientDto {
   @IsNumberString()

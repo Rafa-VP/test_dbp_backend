@@ -18,7 +18,7 @@ export class ClientService {
     const client = await this.clientModel.findByIdAndUpdate(
       id,
       updateClientDto,
-      { new: true },
+      { new: true }
     )
     if (!client) {
       throw new NotFoundException(`Client #${id} not fount`)

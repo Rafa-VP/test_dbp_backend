@@ -7,7 +7,7 @@ import {
   HttpStatus,
   Delete,
   Param,
-  Put,
+  Put
 } from '@nestjs/common'
 import { Client } from '../schema/client.schema'
 import { ClientService } from '../service/client.service'
@@ -25,7 +25,7 @@ export class ClientController {
       const newClient = await this.clientSevice.create(createClientDto)
       return res.status(HttpStatus.CREATED).json({
         message: 'Client has been created successfully',
-        newClient,
+        newClient
       })
     } catch (err: any) {
       res.status(err.status).json(err.response)
@@ -37,13 +37,13 @@ export class ClientController {
   async update(
     @Res() res: Response,
     @Param('id') id: string,
-    @Body() updateClientDto: UpdateClientDto,
+    @Body() updateClientDto: UpdateClientDto
   ) {
     try {
       const client = await this.clientSevice.update(id, updateClientDto)
       return res.status(HttpStatus.OK).json({
         message: 'Client has been successfully updated',
-        client,
+        client
       })
     } catch (err: any) {
       return res.status(err.status).json(err.response)
