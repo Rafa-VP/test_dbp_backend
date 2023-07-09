@@ -6,7 +6,6 @@ import { Model } from 'mongoose'
 @Injectable()
 export class UserService {
   constructor(@InjectModel('User') private userModel: Model<IUser>) {}
-
   async findOne(username: string): Promise<IUser> {
     const user = await this.userModel.findOne({ username }).exec()
     if (!user) {
