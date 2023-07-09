@@ -4,8 +4,8 @@ import { AppService } from '../service/app.service'
 import { ConfigModule } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { ClientModule } from '../../client/module/client.module'
-import { AuthModule } from 'src/api/auth/module/auth.module'
-import { UserModule } from 'src/api/user/module/user.module'
+import { AuthModule } from '../../auth/module/auth.module'
+import { UserModule } from '../../user/module/user.module'
 
 @Module({
   imports: [
