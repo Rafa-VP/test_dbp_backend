@@ -8,7 +8,6 @@ import { UpdateClientDto } from '../dto/update-client.dto'
 @Injectable()
 export class ClientService {
   constructor(@InjectModel('Client') private clientModel: Model<IClient>) {}
-
   async create(createClientDto: CreateClientDto): Promise<IClient> {
     const newClient = await new this.clientModel(createClientDto)
     return newClient.save()
