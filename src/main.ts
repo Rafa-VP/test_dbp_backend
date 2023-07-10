@@ -7,7 +7,7 @@ async function main() {
     cors: {
       origin: '*',
       methods: ['GET', 'PUT', 'POST', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization']
+      preflightContinue: false
     }
   })
   app.useGlobalPipes(new ValidationPipe())
