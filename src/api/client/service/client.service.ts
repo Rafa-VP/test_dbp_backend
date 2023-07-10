@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException
+} from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { IClient } from '../interface/client.interface'
@@ -10,6 +14,13 @@ export class ClientService {
   constructor(@InjectModel('Client') private clientModel: Model<IClient>) {}
   async create(createClientDto: CreateClientDto): Promise<IClient> {
     const newClient = await new this.clientModel(createClientDto)
+    const existClient = await this.clientModel
+      .findOne({
+        ci: createClientDto.ci
+      })
+      .exec()
+    if (existClient)
+      throw new ConflictException('Client C.I is already registered')
     return newClient.save()
   }
 
@@ -20,7 +31,7 @@ export class ClientService {
       { new: true }
     )
     if (!client) {
-      throw new NotFoundException(`Client #${id} not fount`)
+      throw new NotFoundException(`Client #${id} not found!`)
     }
     return client
   }
