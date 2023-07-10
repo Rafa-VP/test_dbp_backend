@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Header } from '@nestjs/common'
 import { AppService } from '../service/app.service'
 import { Public } from '../../decorator/custom.decorator'
 
@@ -8,6 +8,7 @@ export class AppController {
 
   @Public()
   @Get()
+  @Header('Content-Type', 'application/json')
   getHello(): object {
     return this.appService.getHello()
   }

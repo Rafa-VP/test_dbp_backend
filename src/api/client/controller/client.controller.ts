@@ -7,7 +7,8 @@ import {
   HttpStatus,
   Delete,
   Param,
-  Put
+  Put,
+  Header
 } from '@nestjs/common'
 import { Client } from '../schema/client.schema'
 import { ClientService } from '../service/client.service'
@@ -20,6 +21,7 @@ export class ClientController {
   constructor(private readonly clientSevice: ClientService) {}
 
   @Post()
+  @Header('Content-Type', 'application/json')
   async create(@Res() res: Response, @Body() createClientDto: CreateClientDto) {
     try {
       const newClient = await this.clientSevice.create(createClientDto)
@@ -34,6 +36,7 @@ export class ClientController {
   }
 
   @Put('/:id')
+  @Header('Content-Type', 'application/json')
   async update(
     @Res() res: Response,
     @Param('id') id: string,
@@ -51,6 +54,7 @@ export class ClientController {
   }
 
   @Get()
+  @Header('Content-Type', 'application/json')
   async findAll(@Res() res: Response): Promise<Client[]> {
     try {
       const clients = await this.clientSevice.findAll()
@@ -63,6 +67,7 @@ export class ClientController {
   }
 
   @Get('/:ci')
+  @Header('Content-Type', 'application/json')
   async findOne(@Res() res: Response, @Param('ci') ci: string) {
     try {
       const client = await this.clientSevice.findOne(ci)
@@ -77,6 +82,7 @@ export class ClientController {
   }
 
   @Delete('/:id')
+  @Header('Content-Type', 'application/json')
   async delete(@Res() res: Response, @Param('id') clientId: string) {
     try {
       const deletedClient = await this.clientSevice.delete(clientId)
