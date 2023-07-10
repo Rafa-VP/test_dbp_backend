@@ -5,7 +5,7 @@ export type ClientDocument = HydratedDocument<Client>
 
 @Schema({ versionKey: false, timestamps: { createdAt: true, updatedAt: true } })
 export class Client {
-  @Prop()
+  @Prop({ unique: true })
   ci: string
 
   @Prop()

@@ -4,7 +4,7 @@ export type UserDocument = HydratedDocument<User>
 
 @Schema({ versionKey: false, timestamps: { createdAt: true, updatedAt: true } })
 export class User {
-  @Prop()
+  @Prop({ unique: true })
   username: string
 
   @Prop()

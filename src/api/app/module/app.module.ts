@@ -11,7 +11,8 @@ import { UserModule } from '../../user/module/user.module'
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DB_URL, {
-      auth: { username: process.env.DB_USER, password: process.env.DB_PASS }
+      auth: { username: process.env.DB_USER, password: process.env.DB_PASS },
+      autoIndex: true
     }),
     ClientModule,
     AuthModule,
