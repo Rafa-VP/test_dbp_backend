@@ -10,7 +10,7 @@ import {
   Put,
   Header
 } from '@nestjs/common'
-import { Client, ClientSchema } from '../schema/client.schema'
+import { Client } from '../schema/client.schema'
 import { ClientService } from '../service/client.service'
 import { CreateClientDto } from '../dto/create-client.dto'
 import { Response } from 'express'
@@ -57,7 +57,7 @@ export class ClientController {
     schema: {
       example: {
         message: 'Client has been created successfully',
-        newClient: {
+        client: {
           ci: '0850255086',
           firstName: 'Abraham',
           lastName: 'Lincoln',
@@ -86,10 +86,10 @@ export class ClientController {
   @Header('Content-Type', 'application/json')
   async create(@Res() res: Response, @Body() createClientDto: CreateClientDto) {
     try {
-      const newClient = await this.clientSevice.create(createClientDto)
+      const client = await this.clientSevice.create(createClientDto)
       return res.status(HttpStatus.CREATED).json({
         message: 'Client has been created successfully',
-        newClient
+        client
       })
     } catch (err: any) {
       res.status(err.status).json(err.response)
@@ -274,7 +274,7 @@ export class ClientController {
     schema: {
       example: {
         message: 'Client deleted successfully',
-        deletedClient: {
+        client: {
           _id: '64abab1a695bfdb84309d4be',
           ci: '1231231231',
           firstName: 'Julian',
@@ -291,10 +291,10 @@ export class ClientController {
   @Header('Content-Type', 'application/json')
   async delete(@Res() res: Response, @Param('_id') clientId: string) {
     try {
-      const deletedClient = await this.clientSevice.delete(clientId)
+      const client = await this.clientSevice.delete(clientId)
       res
         .status(HttpStatus.OK)
-        .json({ message: 'Client deleted successfully', deletedClient })
+        .json({ message: 'Client deleted successfully', client })
       return
     } catch (err: any) {
       res.status(err.status).json(err.response)
