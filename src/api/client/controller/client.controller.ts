@@ -47,7 +47,7 @@ export class ClientController {
   @ApiConflictResponse({
     schema: {
       example: {
-        message: 'Client C.I is already registered',
+        message: 'Client CI is already registered',
         error: 'Conflict',
         statusCode: 409
       }
